@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="w-100 m-1 center">
+        <a href="/register"><button class="font-medium pad-half">Register</button></a>
+    </div>
+    
+
+    <div class="flex-center">
+        <%users.forEach(user => {%>
+            <div class="user card m-1">
+                <h1 class="header-glow"><%=user.firstName%> <%=user.lastName%></h1>
+
+                <div class="pad-1">
+                    <p>Email: <%=user.email%></p>
+                    <p>Org: <%=user.organization%></p>
+                    <p>Phone Number: <%=user.phone%></p>
+                    <p>Address: <%=user.address%></p>
+                    <p>City: <%=user.city%></p>
+                    <p>Country: <%=user.country%></p>
+                </div>
+
+                <div>
+                    <a href="/edit/<%=user._id%>"><button class="m-1 pad-half">Edit</button></a>
+                    <a href="/delete/<%=user._id%>"><button class="pad-half">Delete</button></a>
+                </div>  
+            </div>
+        <%})%>
+    </div>
+    
+</body>
+</html>
