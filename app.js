@@ -15,28 +15,24 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(express.static('./public'));
 
-async function Init()
-{
-    await mongoose.connect(`mongodb+srv://ethanheimer12357:${process.env.PASSWORD}@cluster.xw6cpyi.mongodb.net/${process.env.DATABASE_NAME}t?retryWrites=true&w=majority`)
-    .then(() => {
-        console.log("Connected To Database")
-    }).catch(error => {
-        console.log(error);
-    })
-    
-    app.get('/register', displays.displayRegister);
-    
-    app.get("/", displays.displayUsers)
-    
-    app.post("/add", users.addUser);
-    
-    app.get("/edit/:id", displays.displayEdit);
-    
-    app.post('/edit/:id', users.editUser);
-    
-    app.get('/delete/:id', users.deleteUser);
-    
-    app.listen(port, () => console.log("Server is up"));
-} 
+mongoose.connect(`mongodb+srv://ethanheimer12357:${process.env.PASSWORD}@cluster.xw6cpyi.mongodb.net/${process.env.DATABASE_NAME}t?retryWrites=true&w=majority`)
+.then(() => {
+    console.log("Connected To Database")
 
-Init();
+    app.get('/register', displays.displayRegister);
+
+    app.get("/", displays.displayUsers)
+
+    app.post("/add", users.addUser);
+
+    app.get("/edit/:id", displays.displayEdit);
+
+    app.post('/edit/:id', users.editUser);
+
+    app.get('/delete/:id', users.deleteUser);
+
+    app.listen(port, () => console.log("Server is up"));
+}).catch(error => {
+    console.log(error);
+})
+
